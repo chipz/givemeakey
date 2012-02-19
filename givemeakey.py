@@ -4,6 +4,7 @@
 import subprocess
 from hashlib import md5
 from getpass import getpass
+from win32clipboard import *
 
 GARBAGE = "matipoTINCT&#axmanBeant7335#%bilgyEMIT(&sailedJoug9735#%"
 
@@ -758,6 +759,12 @@ def pbcopy(data):
     retcode = p.wait()
     return retcode
 
+def wincopy(password):
+    OpenClipboard()
+    EmptyClipboard()
+    d=SetClipboardText(password)
+    CloseClipboard()
+    return int
 
 def main():
     uri = raw_input("URI: ")
@@ -765,8 +772,7 @@ def main():
     secret = getpass("Master password: ")
     password = _GiveMeAKey(uri, user, secret).generate()
     #print "Password:", password
-    pbcopy(password)
-
+    wincopy(password)
 
 if __name__ == "__main__":
     main()
